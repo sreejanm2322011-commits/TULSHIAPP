@@ -1,117 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#050510" />
-    <title>Tulshi Companion</title>
-    <link rel="stylesheet" href="/offline.css" />
-  </head>
-  <body>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Download Tulshi</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050510;color:#f0f0f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px 28px;max-width:400px;width:100%;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,0.6)}
+.logo{width:80px;height:80px;border-radius:50%;border:2px solid rgba(249,115,22,0.6);margin:0 auto 16px;overflow:hidden;background:#000;display:flex;align-items:center;justify-content:center;font-size:40px}
+h1{font-size:24px;font-weight:900;color:#fff;margin-bottom:6px}
+.sub{font-size:13px;color:#64748b;margin-bottom:24px}
+.badge{display:inline-block;background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.3);color:#fb923c;font-size:11px;font-weight:700;padding:4px 14px;border-radius:20px;margin-bottom:24px;letter-spacing:1px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;background:#f97316;color:#000;font-size:15px;font-weight:900;border-radius:14px;text-decoration:none;margin-bottom:14px;transition:background 0.2s}
+.btn:hover{background:#ea6c0a}
+.info{background:rgba(0,0,0,0.3);border-radius:12px;padding:16px;margin:20px 0;text-align:left}
+.info-row{display:flex;justify-content:space-between;font-size:12px;color:#94a3b8;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.info-row:last-child{border-bottom:none}
+.info-row span:last-child{color:#f0f0f0;font-weight:600}
+.steps{text-align:left;margin:20px 0;background:rgba(0,0,0,0.3);border-radius:12px;padding:16px}
+.steps h3{font-size:10px;font-weight:700;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.step{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:12px;color:#94a3b8}
+.step:last-child{margin-bottom:0}
+.step-num{background:#f97316;color:#000;font-weight:900;font-size:10px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.footer{font-size:10px;color:#334155;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo"><img src="tulshi.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='🤖'"/></div>
+  <div class="badge">ANDROID APP</div>
+  <h1>Tulshi Companion</h1>
+  <p class="sub">Your personal AI robot companion</p>
 
-    <!-- Offline shell — renders instantly before React, covers ngrok 3200 error -->
-    <div id="os">
-      <div class="os-orb"></div>
-      <div class="os-av">
-        <img src="/tulshi.jpg" alt="Tulshi" onerror="this.style.display='none'"/>
-        <div class="os-dot">💤</div>
-      </div>
-      <h1 class="os-t">Tulshi is Resting</h1>
-      <p class="os-s">The server is offline. Start the PC server to connect.</p>
-      <p class="os-n">Your memories and chat history are safe. 💜</p>
-      <div class="os-card">
-        <div class="os-row">
-          <span class="os-rl">Server</span>
-          <span class="os-rv"><span class="dr"></span><span style="color:#f87171">Offline</span></span>
-        </div>
-        <div class="os-row">
-          <span class="os-rl">Your data</span>
-          <span class="os-rv"><span class="dg"></span><span style="color:#34d399">Safe on device</span></span>
-        </div>
-        <div class="os-row">
-          <span class="os-rl">Chat history</span>
-          <span class="os-rv"><span class="dg"></span><span style="color:#34d399">Preserved</span></span>
-        </div>
-      </div>
-      <button class="os-btn" onclick="doRetry()">
-        <span class="sp" id="sp"></span>
-        <span id="rl">🔄 Try Reconnecting</span>
-      </button>
-      <button class="os-ghost" onclick="location.reload()">↺ Reload Page</button>
-      <p class="os-foot">Run start_beckend.bat on your PC, then tap reconnect.</p>
-    </div>
+  <a href="https://docs.google.com/uc?export=download&id=12S2Wa2TnFVjnVechmNXpCEfvE32joImY" class="btn">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download Tulshi APK
+  </a>
 
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <div class="info">
+    <div class="info-row"><span>Version</span><span>1.0</span></div>
+  </div>
 
-    <script>
-      (function(){
-        var shell = document.getElementById('os');
-        var retryTimer = null;
+  <div class="steps">
+    <h3>How to install</h3>
+    <div class="step"><div class="step-num">1</div><span>Tap <strong style="color:#f0f0f0">Download Tulshi APK</strong> above</span></div>
+    <div class="step"><div class="step-num">2</div><span>If Chrome warns — tap <strong style="color:#f0f0f0">Download anyway</strong></span></div>
+    <div class="step"><div class="step-num">3</div><span>Open the downloaded file and tap <strong style="color:#f0f0f0">Install</strong></span></div>
+    <div class="step"><div class="step-num">4</div><span>If blocked — Settings → Install unknown apps → Allow</span></div>
+    <div class="step"><div class="step-num">5</div><span>Open Tulshi and enjoy!</span></div>
+  </div>
 
-        function probe(cb) {
-          var x = new XMLHttpRequest();
-          x.open('GET', '/healthz', true);
-          x.timeout = 5000;
-          x.onload = function() {
-            try {
-              var d = JSON.parse(x.responseText);
-              cb(d && d.ok === true);
-            } catch(e) {
-              cb(false); // ngrok error page returns HTML not JSON
-            }
-          };
-          x.onerror = function(){ cb(false); };
-          x.ontimeout = function(){ cb(false); };
-          x.send();
-        }
-
-        function goOnline() {
-          shell.classList.remove('show');
-          if (retryTimer) { clearInterval(retryTimer); retryTimer = null; }
-          setTimeout(function(){ location.reload(); }, 300);
-        }
-
-        function showOffline() {
-          shell.classList.add('show');
-          if (!retryTimer) {
-            retryTimer = setInterval(function(){
-              probe(function(ok){ if(ok) goOnline(); });
-            }, 15000);
-          }
-        }
-
-        // Probe on load — show offline screen if server unreachable
-        probe(function(ok){ if (!ok) showOffline(); });
-
-        // Manual retry button
-        window.doRetry = function() {
-          var sp = document.getElementById('sp');
-          var rl = document.getElementById('rl');
-          sp.classList.add('on');
-          rl.textContent = 'Checking...';
-          probe(function(ok) {
-            sp.classList.remove('on');
-            if (ok) {
-              rl.textContent = '✓ Connected!';
-              goOnline();
-            } else {
-              rl.textContent = '✗ Still offline';
-              setTimeout(function(){ rl.textContent = '🔄 Try Reconnecting'; }, 2500);
-            }
-          });
-        };
-
-        // Hide shell once React mounts successfully
-        new MutationObserver(function(m, obs) {
-          var r = document.getElementById('root');
-          if (r && r.children.length > 0) {
-            shell.classList.remove('show');
-            if (retryTimer) { clearInterval(retryTimer); retryTimer = null; }
-            obs.disconnect();
-          }
-        }).observe(document.getElementById('root'), { childList: true });
-      })();
-    </script>
-  </body>
+  <p class="footer">Tulshi © 2026 &nbsp;|&nbsp; Android 8.0+</p>
+</div>
+</body>
 </html>

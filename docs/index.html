@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050510" />
+    <title>Tulshi Companion</title>
+    <link rel="stylesheet" href="/offline.css" />
+  </head>
+  <body>
+
+    <!-- Offline shell — renders instantly before React, covers ngrok 3200 error -->
+    <div id="os">
+      <div class="os-orb"></div>
+      <div class="os-av">
+        <img src="/tulshi.jpg" alt="Tulshi" onerror="this.style.display='none'"/>
+        <div class="os-dot">💤</div>
+      </div>
+      <h1 class="os-t">Tulshi is Resting</h1>
+      <p class="os-s">The server is offline. Start the PC server to connect.</p>
+      <p class="os-n">Your memories and chat history are safe. 💜</p>
+      <div class="os-card">
+        <div class="os-row">
+          <span class="os-rl">Server</span>
+          <span class="os-rv"><span class="dr"></span><span style="color:#f87171">Offline</span></span>
+        </div>
+        <div class="os-row">
+          <span class="os-rl">Your data</span>
+          <span class="os-rv"><span class="dg"></span><span style="color:#34d399">Safe on device</span></span>
+        </div>
+        <div class="os-row">
+          <span class="os-rl">Chat history</span>
+          <span class="os-rv"><span class="dg"></span><span style="color:#34d399">Preserved</span></span>
+        </div>
+      </div>
+      <button class="os-btn" onclick="doRetry()">
+        <span class="sp" id="sp"></span>
+        <span id="rl">🔄 Try Reconnecting</span>
+      </button>
+      <button class="os-ghost" onclick="location.reload()">↺ Reload Page</button>
+      <p class="os-foot">Run start_beckend.bat on your PC, then tap reconnect.</p>
+    </div>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      (function(){
+        var shell = document.getElementById('os');
+        var retryTimer = null;
+
+        function probe(cb) {
+          var x = new XMLHttpRequest();
+          x.open('GET', '/healthz', true);
+          x.timeout = 5000;
+          x.onload = function() {
+            try {
+              var d = JSON.parse(x.responseText);
+              cb(d && d.ok === true);
+            } catch(e) {
+              cb(false); // ngrok error page returns HTML not JSON
+            }
+          };
+          x.onerror = function(){ cb(false); };
+          x.ontimeout = function(){ cb(false); };
+          x.send();
+        }
+
+        function goOnline() {
+          shell.classList.remove('show');
+          if (retryTimer) { clearInterval(retryTimer); retryTimer = null; }
+          setTimeout(function(){ location.reload(); }, 300);
+        }
+
+        function showOffline() {
+          shell.classList.add('show');
+          if (!retryTimer) {
+            retryTimer = setInterval(function(){
+              probe(function(ok){ if(ok) goOnline(); });
+            }, 15000);
+          }
+        }
+
+        // Probe on load — show offline screen if server unreachable
+        probe(function(ok){ if (!ok) showOffline(); });
+
+        // Manual retry button
+        window.doRetry = function() {
+          var sp = document.getElementById('sp');
+          var rl = document.getElementById('rl');
+          sp.classList.add('on');
+          rl.textContent = 'Checking...';
+          probe(function(ok) {
+            sp.classList.remove('on');
+            if (ok) {
+              rl.textContent = '✓ Connected!';
+              goOnline();
+            } else {
+              rl.textContent = '✗ Still offline';
+              setTimeout(function(){ rl.textContent = '🔄 Try Reconnecting'; }, 2500);
+            }
+          });
+        };
+
+        // Hide shell once React mounts successfully
+        new MutationObserver(function(m, obs) {
+          var r = document.getElementById('root');
+          if (r && r.children.length > 0) {
+            shell.classList.remove('show');
+            if (retryTimer) { clearInterval(retryTimer); retryTimer = null; }
+            obs.disconnect();
+          }
+        }).observe(document.getElementById('root'), { childList: true });
+      })();
+    </script>
+  </body>
+</html>

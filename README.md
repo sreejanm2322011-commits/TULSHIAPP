@@ -1,2 +1,0 @@
-# TULSHIAPP
-A AI APP

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="Download Tulshi — your personal AI robot companion"/>
+<title>Tulshi — Download</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#050510;
+  --orange:#f97316;
+  --orange-light:#fb923c;
+  --card:rgba(255,255,255,0.05);
+  --border:rgba(255,255,255,0.1);
+  --text:#f0f0f0;
+  --muted:#94a3b8;
+  --dim:#64748b;
+}
+html,body{height:100%}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(249,115,22,0.08), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(249,115,22,0.06), transparent 40%);
+}
+
+/* ===== Hero photo at upper-middle ===== */
+.hero{
+  display:flex;
+  justify-content:center;
+  margin-bottom:24px;
+}
+.hero-img{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid rgba(249,115,22,0.6);
+  box-shadow:0 0 60px rgba(249,115,22,0.35), 0 10px 40px rgba(0,0,0,0.6);
+  background:#000;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+@keyframes pulse-glow{
+  0%,100%{box-shadow:0 0 40px rgba(249,115,22,0.3), 0 10px 40px rgba(0,0,0,0.6)}
+  50%{box-shadow:0 0 80px rgba(249,115,22,0.55), 0 10px 40px rgba(0,0,0,0.6)}
+}
+
+/* ===== Card ===== */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:36px 28px;
+  max-width:420px;
+  width:100%;
+  text-align:center;
+  box-shadow:0 25px 60px rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+}
+
+.badge{
+  display:inline-block;
+  background:rgba(249,115,22,0.15);
+  border:1px solid rgba(249,115,22,0.3);
+  color:var(--orange-light);
+  font-size:11px;
+  font-weight:700;
+  padding:5px 16px;
+  border-radius:20px;
+  margin-bottom:14px;
+  letter-spacing:1.5px;
+}
+
+h1{
+  font-size:28px;
+  font-weight:900;
+  color:#fff;
+  margin-bottom:6px;
+  letter-spacing:-0.5px;
+}
+.sub{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:26px;
+}
+
+/* ===== Download button ===== */
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  padding:17px;
+  background:var(--orange);
+  color:#000;
+  font-size:16px;
+  font-weight:900;
+  border-radius:14px;
+  text-decoration:none;
+  margin-bottom:12px;
+  transition:transform 0.15s, background 0.2s, box-shadow 0.2s;
+  box-shadow:0 8px 24px rgba(249,115,22,0.3);
+}
+.btn:hover{
+  background:#ea6c0a;
+  transform:translateY(-2px);
+  box-shadow:0 12px 32px rgba(249,115,22,0.45);
+}
+.btn:active{transform:translateY(0)}
+
+/* ===== Info box ===== */
+.info{
+  background:rgba(0,0,0,0.3);
+  border-radius:12px;
+  padding:14px 16px;
+  margin:18px 0;
+  text-align:left;
+}
+.info-row{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:var(--muted);
+  padding:5px 0;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.info-row:last-child{border-bottom:none}
+.info-row span:last-child{color:var(--text);font-weight:600}
+
+/* ===== Install steps ===== */
+.steps{
+  text-align:left;
+  margin:18px 0;
+  background:rgba(0,0,0,0.3);
+  border-radius:12px;
+  padding:16px;
+}
+.steps h3{
+  font-size:10px;
+  font-weight:700;
+  color:var(--dim);
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+.step{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:10px;
+  font-size:12.5px;
+  color:var(--muted);
+  line-height:1.4;
+}
+.step:last-child{margin-bottom:0}
+.step-num{
+  background:var(--orange);
+  color:#000;
+  font-weight:900;
+  font-size:10px;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  margin-top:1px;
+}
+strong{color:var(--text)}
+
+/* ===== Permissions note ===== */
+.perms{
+  background:rgba(59,130,246,0.08);
+  border:1px solid rgba(59,130,246,0.2);
+  border-radius:12px;
+  padding:12px 14px;
+  margin:16px 0;
+  text-align:left;
+  font-size:11px;
+  color:#93c5fd;
+  line-height:1.5;
+}
+.perms b{color:#bfdbfe}
+
+.footer{
+  font-size:10px;
+  color:#334155;
+  margin-top:18px;
+  letter-spacing:0.5px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- Tulshi photo at upper-middle -->
+  <div class="hero">
+    <img src="tulshi.png" class="hero-img" alt="Tulshi"
+         onerror="this.onerror=null;this.src='tulshi.jpg';this.classList.add('hero-img')"/>
+  </div>
+
+  <div class="badge">ANDROID APP</div>
+  <h1>Tulshi Companion</h1>
+  <p class="sub">Your personal AI robot companion</p>
+
+  <!-- APK hosted directly in this GitHub repo -->
+  <a href="Tulshi-v1.1.apk" download class="btn">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    Download Tulshi APK
+  </a>
+
+  <div class="info">
+    <div class="info-row"><span>Version</span><span>1.1</span></div>
+    <div class="info-row"><span>Size</span><span>4.6 MB</span></div>
+  </div>
+
+  <div class="perms">
+    <b>Why these permissions?</b><br/>
+    • <b>Storage</b> — save your chat history locally<br/>
+    • <b>Bluetooth</b> — connect to the Tulshi robot<br/>
+    • <b>Internet</b> — talk with your companion
+  </div>
+
+  <div class="steps">
+    <h3>How to install</h3>
+    <div class="step"><div class="step-num">1</div><span>Tap <strong>Download Tulshi APK</strong> above</span></div>
+    <div class="step"><div class="step-num">2</div><span>If Chrome warns, tap <strong>Download anyway</strong></span></div>
+    <div class="step"><div class="step-num">3</div><span>Open the file &amp; tap <strong>Install</strong></span></div>
+    <div class="step"><div class="step-num">4</div><span>If blocked — <strong>Settings → Install unknown apps → Allow</strong></span></div>
+    <div class="step"><div class="step-num">5</div><span>Open Tulshi and enjoy! 🤖</span></div>
+  </div>
+
+  <p class="footer">TULSHI © 2026 &nbsp;•&nbsp; No ads &nbsp;•&nbsp; No watermarks</p>
+</div>
+</body>
+</html>
